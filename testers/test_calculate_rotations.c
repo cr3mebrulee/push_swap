@@ -25,11 +25,10 @@ void	test_calculate(void)
     /*full stuck with numbers*/
     t_stack	*stack;
     t_stack *tmp;
-
-    int arr[] = {1, 20, -5, 6, 3, 56, 101, 4};
     int size;
     int cost;
     int index;
+    int arr[] = {1, 20, -5, 6, 3, 56, 101, 4};
 
     size = 7;
     stack = NULL;
