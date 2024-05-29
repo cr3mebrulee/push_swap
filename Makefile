@@ -24,7 +24,7 @@ SRCS 	= src/main.c\
 					src/push_back_a.c\
 					src/calculate_cost.c\
 					src/find_index.c\
-					src/find_target_node.c
+					src/find_target_index.c
 					
 OBJS 	= ${SRCS:.c=.o}
 

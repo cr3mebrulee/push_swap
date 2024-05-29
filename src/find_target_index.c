@@ -9,11 +9,25 @@ void    find_max(t_stack *stack, int *num)
     *num = stack->data;
 }
 
+void find_middle_node(t_stack *stack, int middle, t_stack **middle_node) 
+{
+    int count;
+    
+    count = 0;
+    while (stack && count < middle) 
+    {
+        stack = stack->next;
+        *middle_node = stack;
+        count++;
+    }
+    return ;
+}
+
 void    target_above_middle(t_stack *stack, int number, int *index, int middle_value)
 {
     while (number < middle_value && stack->next != NULL)
     {
-        if (stack->data < number && stack->next->data > number)
+     if (stack->data < number && stack->next->data > number)
         {
             find_index(stack, stack->next->data, index);
             return ;
@@ -22,32 +36,16 @@ void    target_above_middle(t_stack *stack, int number, int *index, int middle_v
     }
 }
 
-void    target_under_middle(t_stack *stack, int number, int *index)
+void    target_under_middle(t_stack *stack, t_stack *node, int number, int *index)
 {
-    while (stack != NULL && stack->next != NULL)
+    while (node != NULL && node->next != NULL)
     {
-        if (stack->data < number && stack->next->data > number)
+        if (node->data < number && node->next->data > number)
         {
-            find_index(stack, stack->next->data, index);
+            find_index(stack, node->next->data, index);
             return ;
         }
-        stack = stack->next;
-    }
-}
-
-void find_middle_value(t_stack *stack, int middle, int *middle_value) 
-{
-    int current = 0;
-
-    while (stack != NULL) 
-    {
-        if (current == middle) 
-        {
-            *middle_value = stack->data;
-            return ;
-        }
-        stack = stack->next;
-        current++;
+        node = node->next;
     }
 }
 
@@ -55,24 +53,24 @@ void    target_between_max_min(t_stack *stack, int number, int *index)
 {
     int size;
     int middle;
-    int middle_value;
+    t_stack *middle_node;
     
     list_size(stack, &size);
     middle = size / 2;
-    find_middle_value(stack, middle, &middle_value);
-    if (number <= middle_value)
+    find_middle_node(stack, middle, &middle_node);
+    if (number < middle_node->data)
     {
-        target_above_middle(stack, number, index, middle_value);
+        target_above_middle(stack, number, index, middle_node->data);
     }
-    if (number > middle_value)
+    if (number > middle_node->data)
     {
-        target_under_middle(stack, number, index);
+        target_under_middle(stack, middle_node, number, index);
     }
 }
 
 /*process three possible cases: a number less than the min, 
 a number greater than the max, and a number between the min and max values.*/
-void find_target_node(t_stack *stack, int number, int *index)
+void find_target_index(t_stack *stack, int number, int *index)
 {
     t_stack *tmp;
     int min;

@@ -24,20 +24,18 @@ void	push(t_stack **stack, int value)
 	*stack = new_node;
 }
 
-int	pop(t_stack **stack)
+int	pop(t_stack **stack, int *value)
 {
 	if (!*stack)
 		return (-1);
 
 	t_stack *temp;
-	int		value;
 
 	temp = *stack;
-	value = temp->data;
+	*value = temp->data;
 	*stack = (*stack)->next;
 	free(temp);
-	//function return value, change
-	return (value);
+	return (0);
 }
 
 void	push_stack_b(t_stack **stack_a, t_stack **stack_b)
@@ -49,7 +47,7 @@ void	push_stack_b(t_stack **stack_a, t_stack **stack_b)
 	list_size(*stack_a, &size);
 	while (size > 3)
 	{
-		value = pop(stack_a);
+		pop(stack_a, &value);
 		push(stack_b, value);
 		size--;
 	}
