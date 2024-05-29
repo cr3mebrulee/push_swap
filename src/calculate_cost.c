@@ -1,10 +1,7 @@
 #include "../include/push_swap.h"
 
-/*sum operations in a to op in b*/
-/*calculate how much operations to bring target node to the top*/
-/*find a target node in stack a*/
-/*calculate how much operations to bring b to the top*/
-
+/*if node is above the middle of the stack we rotate stack up, 
+if under middle we rotae down.*/
 void calculate_rotations(t_stack *stack, int index, int *cost)
 {
     int middle;
@@ -30,11 +27,11 @@ void calculate_rotations(t_stack *stack, int index, int *cost)
     }
 }
 
-void calculate_cost(t_stack *stack_a, t_stack *stack_b)
+void    calculate_cost(t_stack *stack_a, t_stack *stack_b)
 {
     t_stack *tmp_b;
-    int index_a;
     int index_b;
+    int index_a;
     int cost_a;
     int cost_b;
     /*variable only for testing, should be deleted*/
@@ -46,17 +43,17 @@ void calculate_cost(t_stack *stack_a, t_stack *stack_b)
     {
         /*find index of current b node*/
         find_index(stack_b, tmp_b->data, &index_b);
-        /*calculate rotations to bring b to the top*/
+        /*calculate rotations of current b node*/
         calculate_rotations(stack_b, index_b, &cost_b);
-        /*find target node for b node in a stack*/
-        find_target_node(stack_a, tmp_b->data, &index_a);
-        /*calclate rotations for a target node*/
+        /*find index of target node*/
+        find_target_index(stack_a, tmp_b->data, &index_a);
+        /*assign index of target node to b node field*/
+        tmp_b->target_index = index_a;
+        /*calculate rotations of target node*/
         calculate_rotations(stack_a, index_a, &cost_a);
-        /*calculate cost of both nodes*/
+        /*to get a result cost of current b node*/
         tmp_b->cost = cost_b + cost_a;
-        printf("Sum cost of node %i b %d\n", i, tmp_b->cost);
         i++;
-        /*go to the next node*/
         tmp_b = tmp_b->next;
     }
     return ;
