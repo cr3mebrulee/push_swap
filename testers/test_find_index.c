@@ -2,13 +2,12 @@
 
 void test_find_index(void)
 {
-	t_stack *stack;
-	int	    index;
+    t_stack *stack;
+    int	    index;
     int     result;
-
-	stack = NULL;
-	index = 0;
-	push(&stack, 15);
+    stack = NULL;
+    index = 0;
+    push(&stack, 15);
     push(&stack, 18);
     push(&stack, 20);
     find_index(stack, 15, &index);
@@ -19,13 +18,17 @@ void test_find_index(void)
     printf("Index of 18: %d\n", index);
     find_index(stack, 20, &index);
     printf("Index of 20: %d\n", index);
-	assert(index == 0);
+    assert(index == 0);
     result = find_index(stack, 23, &index);
     assert(result == -1);
     if (result = -1)
+    {
         printf("Element has not found as expected\n");
-    else 
+    }
+    else
+    {
         ("Error\n");
+    }
     print_stack(stack);
 }
 

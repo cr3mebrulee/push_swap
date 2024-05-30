@@ -37,10 +37,10 @@ typedef struct node {
 void	print_stack(t_stack *stack);
 void	push(t_stack **stack, int value);
 int		pop(t_stack **stack, int *value);
-void    calculate_cost(t_stack *stack_a, t_stack *stack_b);
+void	calculate_cost(t_stack *stack_a, t_stack *stack_b);
 void	find_target_index(t_stack *stack, int number, int *index);
 int		find_index(t_stack *stack, int  number, int *index);
-void    push_back_a(t_stack **stack_a, t_stack **stack_b);
+void	push_back_a(t_stack **stack_a, t_stack **stack_b);
 void	push(t_stack **stack, int value);
 void	push_stack_b(t_stack **stack_a, t_stack **stack_b);
 void	ra(t_stack **stack);
