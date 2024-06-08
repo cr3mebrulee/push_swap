@@ -1,17 +1,29 @@
 #include "../include/push_swap.h"
 
+// void print_target_indexes(t_stack *stack)
+// {
+//     t_stack *current = stack;
+//     while (current != NULL) 
+//     {
+//         printf("%i %d\n", current->data, current->target_index);
+//         current = current->next;
+//     }
+// }
+
 void find_target_node(t_stack *stack_a, int target_index, t_stack **target_node)
 {
+    int i;
+    i = 0;
     *target_node = stack_a;
-    while (*target_node != NULL)
+    while(i <= target_index && *target_node != NULL)
     {
-        if ((*target_node)->index == target_index)
+        if (i == target_index)
         {
             return ;
         }
         *target_node = (*target_node)->next;
+        i++;
     }
-    // If not found, set target_node to NULL
     *target_node = NULL;
 }
 
@@ -29,12 +41,12 @@ int find_cheapest_node(t_stack *stack, t_stack **cheapest_node)
 
     while (current != NULL) 
     {
-        if (current->cost == 0) 
+        if (current->sum_cost == 0) 
         {
             *cheapest_node = current;
             break;
         }
-        if (current->cost < (*cheapest_node)->cost) 
+        if (current->sum_cost < (*cheapest_node)->sum_cost) 
         { 
             *cheapest_node = current;
         }
@@ -45,15 +57,17 @@ int find_cheapest_node(t_stack *stack, t_stack **cheapest_node)
 
 void    push_back_a(t_stack **stack_a, t_stack **stack_b)
 {
-    t_stack *tmp_b;
     t_stack *cheapest_node;
     t_stack *target_node;
 
-    tmp_b = *stack_b;
     cheapest_node = NULL;
     target_node = NULL;
-    while(tmp_b != NULL)
+    while(stack_b != NULL)
     {
+        if (!stack_b || !*stack_b)
+        {
+            return ;
+        }     
         /*calculate cost of each node in b*/
         calculate_cost(*stack_a, *stack_b);
         /*compare the costs of each node and find cheapest*/  
@@ -61,9 +75,7 @@ void    push_back_a(t_stack **stack_a, t_stack **stack_b)
         /*get the pointer to target node in stack a*/
         find_target_node(*stack_a, cheapest_node->target_index, &target_node);
         /*push b node to a node, not ready*/
-        //push_a(&cheapest_node, &target_node);
-        tmp_b = tmp_b->next;
+        push_cheapest_node(stack_b, stack_a, cheapest_node, target_node);
     }
-    printf("Cheapest's node data is: %i\n", cheapest_node->data);
-    printf("Target's node index is: %i\n", cheapest_node->target_index);
+    return ;
 }

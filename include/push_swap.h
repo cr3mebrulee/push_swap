@@ -26,23 +26,27 @@
 typedef struct node {
 	int	data;
 	struct node	*next;
-	int rotations;
-	int	direction;
-	int index;
-	int cost;
 	int	target_index;
+	int index;
+	int	cost;
+	int sum_cost;
+	int	direction;
+	
 }	t_stack;
 
 
 void	print_stack(t_stack *stack);
 void	push(t_stack **stack, int value);
 int		pop(t_stack **stack, int *value);
+void    push_cheapest_node(t_stack **stack_b, t_stack **stack_a, t_stack *node_b, t_stack *node_a);
 void	calculate_cost(t_stack *stack_a, t_stack *stack_b);
-void	find_target_index(t_stack *stack, int number, int *index);
-int		find_index(t_stack *stack, int  number, int *index);
+void	find_target_index(t_stack *stack, int number, t_stack **target);
+int		find_index(t_stack *stack, int  number);
 void	push_back_a(t_stack **stack_a, t_stack **stack_b);
 void	push(t_stack **stack, int value);
 void	push_stack_b(t_stack **stack_a, t_stack **stack_b);
+void	rb(t_stack **stack);
+void	rrb(t_stack **stack);
 void	ra(t_stack **stack);
 void	rra(t_stack **stack);
 void	sa(t_stack **stack);

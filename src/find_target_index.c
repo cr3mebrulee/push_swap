@@ -2,94 +2,100 @@
 
 void    find_max(t_stack *stack, int *num)
 {
-    while(stack->next != NULL)
+    if (stack == NULL)
     {
-        stack = stack->next;
+        fprintf(stderr, "Error: stack is NULL.\n");
+        return;
     }
+
     *num = stack->data;
-}
-
-void find_middle_node(t_stack *stack, int middle, t_stack **middle_node) 
-{
-    int count;
-    
-    count = 0;
-    while (stack && count < middle) 
+    while (stack) 
     {
-        stack = stack->next;
-        *middle_node = stack;
-        count++;
-    }
-    return ;
-}
-
-void    target_above_middle(t_stack *stack, int number, int *index, int middle_value)
-{
-    while (number < middle_value && stack->next != NULL)
-    {
-     if (stack->data < number && stack->next->data > number)
+        if (stack->data > *num)
         {
-            find_index(stack, stack->next->data, index);
-            return ;
-        }
+            *num = stack->data;
+        }     
         stack = stack->next;
-    }
+    } 
 }
 
-void    target_under_middle(t_stack *stack, t_stack *node, int number, int *index)
+void find_min(t_stack *stack, int *num)
 {
-    while (node != NULL && node->next != NULL)
+  if (!stack) return;
+    *num = stack->data;
+    while (stack) 
     {
-        if (node->data < number && node->next->data > number)
+        if (stack->data < *num)
         {
-            find_index(stack, node->next->data, index);
-            return ;
-        }
-        node = node->next;
-    }
+            *num = stack->data;
+        }     
+        stack = stack->next;
+    } 
 }
 
-void    target_between_max_min(t_stack *stack, int number, int *index)
-{
-    int size;
-    int middle;
-    t_stack *middle_node;
+// t_stack *find_last_node(t_stack *stack) 
+// {
+//     if (stack == NULL) 
+//     {
+//         return (NULL);
+//     }
     
-    list_size(stack, &size);
-    middle = size / 2;
-    find_middle_node(stack, middle, &middle_node);
-    if (number < middle_node->data)
-    {
-        target_above_middle(stack, number, index, middle_node->data);
-    }
-    if (number > middle_node->data)
-    {
-        target_under_middle(stack, middle_node, number, index);
-    }
-}
+//     t_stack *current = stack;
+//     while (current->next != NULL) 
+//     {
+//         current = current->next;
+//     }
+//     return (current);
+// }
 
-/*process three possible cases: a number less than the min, 
-a number greater than the max, and a number between the min and max values.*/
-void find_target_index(t_stack *stack, int number, int *index)
+/*process three possible cases: a number less than the min or more than max, 
+a number between first and last node, and a number between first and last node values.*/
+void find_target_index(t_stack *stack, int number, t_stack **target)
 {
-    t_stack *tmp;
+    t_stack *node;
+    //t_stack *last_node;
     int min;
     int max;
+    int i;
     
-    tmp = stack;
-    min = tmp->data;
-    find_max(tmp, &max);
-    if (number < min)
+    i = 0;
+    find_min(stack, &min);
+    find_max(stack, &max);
+    node = stack;
+    //last_node = find_last_node(stack);
+    if (number < min || number > max) 
     {
-        find_index(tmp, min, index);
+        while (node != NULL && node->next != NULL)
+        {
+            if (node->data == min)
+            {
+                node->index = i;
+                *target = node;
+                return ;
+            }
+            node = node->next;
+            i++;
+        }
     }
-    else if (number > max)
-    {
-        find_index(tmp, max, index);
-    }
+    // else if (number < stack->data && number > last_node->data)
+    // {
+    //     node->index = i;
+    //     *target = node;
+    //     return;
+    // }
     else
     {
-        target_between_max_min(tmp, number, index);
-    }
+        while (node != NULL && node->next != NULL)
+        {
+            if (node->data < number && node->next->data > number)
+            {
+                find_index(stack, node->next->data);
+                *target = node->next;
+                return ;
+            }
+            node = node->next;
+            i++;
+        }
+    }   
     return ;
 }

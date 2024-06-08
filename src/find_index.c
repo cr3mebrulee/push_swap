@@ -8,7 +8,7 @@
 
 #include "../include/push_swap.h"
 
-int find_index(t_stack *stack, int  number, int *index)
+int find_index(t_stack *stack, int  number)
 {
     t_stack *ptr;
     int i;
@@ -19,7 +19,8 @@ int find_index(t_stack *stack, int  number, int *index)
     {
         if (ptr->data == number)
         {
-            *index = i;
+            ptr->index = i;
+            //printf("find_index: Node index is %i\n", ptr->index);
             return (0);
         }
         ptr = ptr->next;

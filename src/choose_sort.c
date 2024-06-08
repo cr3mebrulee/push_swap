@@ -36,6 +36,13 @@ void	choose_sort(t_stack *stack_a, t_stack *stack_b)
 		push_stack_b(&stack_a, &stack_b);
 		printf("Stack a after sorting: \n");
 		sort_3(&stack_a);
+		printf("\n");
 		push_back_a(&stack_a, &stack_b);
+		//final_rotation();
+		ra(&stack_a);
+		ra(&stack_a);
+		ra(&stack_a);
+		ra(&stack_a);
+		print_stack(stack_a);
 	}
 }

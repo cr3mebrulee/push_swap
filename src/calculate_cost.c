@@ -2,59 +2,52 @@
 
 /*if node is above the middle of the stack we rotate stack up, 
 if under middle we rotae down.*/
-void calculate_rotations(t_stack *stack, int index, int *cost)
+void calculate_rotations(t_stack *stack, t_stack *node)
 {
-    int middle;
     int size;
+    int index;
+    t_stack *ptr;
     
-    list_size(stack, &size);
-    middle = size / 2;
-    if (index == -1)
+    size = 0;
+    ptr = stack;
+    while (ptr != NULL) 
     {
-        // Error handle - do we need?
-        *cost = -1;
-        return;
+        size++;
+        ptr = ptr->next;
     }
-    if (index <= middle)
-    {
-        *cost = index;
-        return ;
-    }
-    else
-    {
-        *cost = size - index;
-        return ;
-    }
+    index = node->index;
+    node->cost = (index <= size / 2) ? index : size - index;
+    node->direction = (index <= size / 2) ? 0 : 1;
 }
 
 void    calculate_cost(t_stack *stack_a, t_stack *stack_b)
 {
-    t_stack *tmp_b;
-    int index_b;
-    int index_a;
-    int cost_a;
-    int cost_b;
-    /*variable only for testing, should be deleted*/
-    int i;
+    t_stack *node_b;
+    t_stack *node_a;
 
-    i = 1;
-    tmp_b = stack_b;
-    while (tmp_b != NULL)
+    if (stack_b == NULL)
+    {
+        fprintf(stderr, "Error: stack_b is NULL.\n");
+        return ;
+    }
+    node_b = stack_b;
+    node_a = stack_a;
+    while (node_b != NULL)
     {
         /*find index of current b node*/
-        find_index(stack_b, tmp_b->data, &index_b);
+        find_index(stack_b, node_b->data);
         /*calculate rotations of current b node*/
-        calculate_rotations(stack_b, index_b, &cost_b);
-        /*find index of target node*/
-        find_target_index(stack_a, tmp_b->data, &index_a);
+        calculate_rotations(stack_b, node_b);
+        /*find index of target node and adjust pointer to target node*/
+        find_target_index(stack_a, node_b->data, &node_a);
         /*assign index of target node to b node field*/
-        tmp_b->target_index = index_a;
+        node_b->target_index = node_a->index;
         /*calculate rotations of target node*/
-        calculate_rotations(stack_a, index_a, &cost_a);
+        calculate_rotations(stack_a, node_a);
         /*to get a result cost of current b node*/
-        tmp_b->cost = cost_b + cost_a;
-        i++;
-        tmp_b = tmp_b->next;
+        node_b->sum_cost = node_b->cost + node_a->cost;
+        node_b = node_b->next;
+        node_a = stack_a;
     }
     return ;
 }
