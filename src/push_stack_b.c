@@ -12,30 +12,34 @@
 
 #include "../include/push_swap.h"
 
-void	push(t_stack **stack, int value)
+bool	push(t_stack **stack, int value)
 {
 	t_stack	*new_node;
 
 	new_node = (t_stack *)malloc(sizeof(t_stack));
 	if (!new_node)
-		return ;
+	{
+		return (false);
+	}
 	new_node->data = value;
 	new_node->next = *stack;
 	*stack = new_node;
+	return (true);
 }
 
-int	pop(t_stack **stack, int *value)
+bool	pop(t_stack **stack, int *value)
 {
-	if (!*stack)
-		return (-1);
-
 	t_stack *temp;
 
+	if (!*stack)
+	{
+		return (false);
+	}
 	temp = *stack;
 	*value = temp->data;
 	*stack = (*stack)->next;
 	free(temp);
-	return (0);
+	return (true);
 }
 
 void	push_stack_b(t_stack **stack_a, t_stack **stack_b)

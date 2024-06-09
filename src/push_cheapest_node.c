@@ -83,7 +83,9 @@ void    push_cheapest_node(t_stack **stack_b, t_stack **stack_a, t_stack *node_b
     }
     lift_b_node(stack_b, node_b);
     lift_a_node(stack_a, node_a);
-    pop(stack_b, &value);
-    push(stack_a, value);
+    if (pop(stack_b, &value) != 0)
+    {
+        push(stack_a, value);
+    }
     write(1, "pa\n", 3);
 }

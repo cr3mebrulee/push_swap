@@ -2,41 +2,16 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "(gdb) Launch",
-      "type": "cppdbg",
-      "request": "launch",
-      "program": "${workspaceFolder}/push_swap",
-      "args": [
-        "5 2 7 1 -1 6 9 4 0"
-      ],
-      "stopAtEntry": false,
-      "cwd": "${fileDirname}",
-      "environment": [],
-      "externalConsole": false,
-      "MIMode": "gdb",
-      "preLaunchTask": "make",
-      "setupCommands": [
-        {
-          "description": "Enable pretty-printing for gdb",
-          "text": "-enable-pretty-printing",
-          "ignoreFailures": true
-        },
-        {
-          "description": "Set Disassembly Flavor to Intel",
-          "text": "-gdb-set disassembly-flavor intel",
-          "ignoreFailures": true
-        }
-      ]
-    },
-    {
       "name": "C/C++ Runner: Debug Session",
       "type": "cppdbg",
       "request": "launch",
-      "args": [],
+      "args": [
+        0, 100, 4, 99 54 67 -12 -56 4563 3233 705 907654 124 323 -121 -987 234 123450 214 13 504
+      ],
       "stopAtEntry": false,
       "externalConsole": false,
-      "cwd": "/home/tanya/Berlin42/push_swap (copy)",
-      "program": "/home/tanya/Berlin42/push_swap (copy)/build/Debug/outDebug",
+      "cwd": "/home/tanya/Berlin42/my_push_swap_last_modif/repo_without_vscode/push_swap/src",
+      "program": "/home/tanya/Berlin42/my_push_swap_last_modif/repo_without_vscode/push_swap/src/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
