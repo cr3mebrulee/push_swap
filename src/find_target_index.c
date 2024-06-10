@@ -83,6 +83,8 @@ void find_target_index(t_stack *stack, int number, t_stack **target)
             i++;
         }
     }
+    /*case when number should be inserted between 1st and last nodes
+    what lead to mistakes*/
     else if (number < stack->data && number > last_node->data)
     {
         node->index = i;
@@ -94,9 +96,7 @@ void find_target_index(t_stack *stack, int number, t_stack **target)
     {
         while (node != NULL && node->next != NULL)
         {
-            /*if number more then current node but less than next - next one is our target
-            ! we didn't consider case when number should be inserted between 1st and last nodes
-            what lead to mistakes*/
+            /*if number more then current node but less than next - next one is our target*/
             if (node->data < number && node->next->data > number)
             {
                 find_index(stack, node->next->data);
