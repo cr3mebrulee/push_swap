@@ -12,7 +12,6 @@ t_stack    *rotation_settings(t_stack *stack)
         if (stack->data == min)
         {
             stack->index = i;
-            printf("Stack minimum is %i, minimum index is %i\n", stack->data, stack->index);
             break;
         }
         i++;
@@ -32,7 +31,6 @@ void    final_rotation(t_stack **stack)
     minimum = rotation_settings(*stack);
     list_size(*stack, &size);
     middle = size / 2;
-    //printf("Stack head is: %i, middle is");
     if (minimum->index <= middle)
     {
         i = minimum->index;
