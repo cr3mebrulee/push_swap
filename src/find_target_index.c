@@ -33,33 +33,34 @@ void find_min(t_stack *stack, int *num)
     } 
 }
 
-// t_stack *find_last_node(t_stack *stack) 
-// {
-//     if (stack == NULL) 
-//     {
-//         return (NULL);
-//     }
+t_stack *find_last_node(t_stack *stack) 
+{
+    if (stack == NULL) 
+    {
+        return (NULL);
+    }
     
-//     t_stack *current = stack;
-//     while (current->next != NULL) 
-//     {
-//         current = current->next;
-//     }
-//     return (current);
-// }
+    t_stack *current = stack;
+    while (current->next != NULL) 
+    {
+        current = current->next;
+    }
+    return (current);
+}
 
 /*process three possible cases: a number less than the min or more than max, 
 a number between first and last node, and a number between first and last node values.*/
 void find_target_index(t_stack *stack, int number, t_stack **target)
 {
     t_stack *node;
-    // t_stack *last_node;
+    t_stack *last_node;
     int min;
     int max;
     /*variable for index incrementing*/
     int i;
     
     i = 0;
+    last_node = find_last_node(stack);
     /*find minimum value in stack*/
     find_min(stack, &min);
     /*find max value in stack*/
@@ -69,7 +70,7 @@ void find_target_index(t_stack *stack, int number, t_stack **target)
     /*if number is new min or new max we put it on top of min*/
     if (number < min || number > max) 
     {
-        while (node != NULL && node->next != NULL)
+        while (node != NULL)
         {
             if (node->data == min)
             {
@@ -81,6 +82,12 @@ void find_target_index(t_stack *stack, int number, t_stack **target)
             node = node->next;
             i++;
         }
+    }
+    else if (number < stack->data && number > last_node->data)
+    {
+        node->index = i;
+        *target = node;
+        return;
     }
     /*we work on case when target is between max and min values of stack*/
     else

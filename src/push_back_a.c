@@ -75,11 +75,7 @@ void    push_back_a(t_stack **stack_a, t_stack **stack_b)
         /*get the pointer to target node in stack a*/
         find_target_node(*stack_a, cheapest_node->target_index, &target_node);
         /*push b node to a node, not ready*/
-        push_cheapest_node(stack_b, stack_a, cheapest_node, target_node);
-        if(!if_sorted(*stack_a))
-        {
-            final_rotation(stack_a);
-        }
+        push_cheapest_node(stack_b, stack_a, cheapest_node, target_node);       
     }
     return ;
 }

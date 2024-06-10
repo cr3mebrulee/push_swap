@@ -1,6 +1,6 @@
 #include "../include/push_swap.h"
 
-void    rotation_settings(t_stack *stack)
+t_stack    *rotation_settings(t_stack *stack)
 {
     int min;
     int i;
@@ -12,12 +12,13 @@ void    rotation_settings(t_stack *stack)
         if (stack->data == min)
         {
             stack->index = i;
+            printf("Stack minimum is %i, minimum index is %i\n", stack->data, stack->index);
             break;
         }
         i++;
         stack = stack->next;
     }
-    return ;
+    return (stack);
 }
 
 void    final_rotation(t_stack **stack)
@@ -25,33 +26,35 @@ void    final_rotation(t_stack **stack)
     int i;
     int size;
     int middle;
-    t_stack *tmp;
+    t_stack *minimum;
     
     i = 0;
-    tmp = *stack;
+    minimum = rotation_settings(*stack);
     list_size(*stack, &size);
     middle = size / 2;
-    rotation_settings(*stack);
-    if (tmp->index <= middle)
+    //printf("Stack head is: %i, middle is");
+    if (minimum->index <= middle)
     {
-        i = tmp->index;
-        while (i >= 0)
+        i = minimum->index;
+        while (i > 0)
         {
             ra(stack);
             i--;
         }
         write(1, "not_sorted: ra\n", 15);
-        print_stack(*stack);
     }
-    else if (tmp->index > middle)
+    else if (minimum->index > middle)
     {
-        i = size - tmp->index;
+        i = size - minimum->index;
         while (i > 0)
         {
             rra(stack);
             i--;
         }
-        write(1, "not_sorted: rra\n", 16);
+    }
+    if (!if_sorted(*stack))
+    {
+        write(1, "not sorted anyway!\n", sizeof("not sorted anyway!\n"));
         print_stack(*stack);
     }
     return ;
