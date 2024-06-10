@@ -10,23 +10,9 @@
 #                                                                              #
 # **************************************************************************** #
 
+
 NAME	= push_swap
 LIBFT	= ./libft/libft.a
-
-SRCS 	= src/main.c\
-					src/create_stack_a.c\
-					src/if_sorted.c\
-					src/choose_sort.c\
-					src/list_size.c\
-					src/sort_3.c\
-					src/operations.c\
-					src/push_stack_b.c\
-					src/push_back_a.c\
-					src/calculate_cost.c\
-					src/find_index.c\
-					src/find_target_index.c
-					
-OBJS 	= ${SRCS:.c=.o}
 
 HEADER	= -I include
 
@@ -42,6 +28,27 @@ all: 	libft	${NAME}
 ${NAME}:	${OBJS} ${LIBFT}
 					@echo "\033[33m----Compiling push_swap binary----"
 					@$(CC) ${OBJS} -Llibft -lft -o ${NAME}
+SRCDIR  = src
+OBJDIR  = build
+INCDIR  = include
+
+SRCS    = $(SRCDIR)/main.c\
+          $(SRCDIR)/create_stack_a.c\
+          $(SRCDIR)/if_sorted.c\
+          $(SRCDIR)/choose_sort.c\
+          $(SRCDIR)/list_size.c\
+          $(SRCDIR)/sort_3.c\
+          $(SRCDIR)/operations_stack_a.c\
+          $(SRCDIR)/operations_stack_b.c\
+          $(SRCDIR)/push_stack_b.c\
+          $(SRCDIR)/push_back_a.c\
+          $(SRCDIR)/calculate_cost.c\
+          $(SRCDIR)/find_index.c\
+          $(SRCDIR)/find_target_index.c\
+          $(SRCDIR)/push_cheapest_node.c\
+          $(SRCDIR)/final_rotation.c
+
+OBJS    = $(SRCS:$(SRCDIR)/%.c=$(OBJDIR)/%.o)
 
 libft:
 	@make -C ./libft
