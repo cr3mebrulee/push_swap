@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
-#include <assert.h>
 
 /*Function to print stack*/
 void	print_stack(t_stack *stack)
@@ -40,10 +39,13 @@ int	main(int argc, char **argv)
 		create_stack_a(&stack_a, split_argv);
 	}
 	else
+	{
 		create_stack_a(&stack_a, argv + 1);
-	ft_printf("Stack a: \n");
-	print_stack(stack_a);
+	}
 	if (!if_sorted(stack_a))
+	{
 		choose_sort(stack_a, stack_b);
+	}
+	print_stack(stack_a);
 	return (0);
 }

@@ -22,7 +22,7 @@ SRCS 	= src/main.c\
 					src/operations_stack_a.c\
 					src/operations_stack_b.c\
 					src/push_stack_b.c\
-					src/push_back_a.c\
+					src/push_stack_a.c\
 					src/calculate_cost.c\
 					src/find_index.c\
 					src/find_target_index.c\

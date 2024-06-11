@@ -12,7 +12,6 @@
 
 #include "../include/push_swap.h"
 
-/*Function converts string to integer and check if the integer in correct range*/
 static int	ft_atol(const char *str)
 {
 	long int	result;
@@ -48,7 +47,6 @@ static int	ft_atol(const char *str)
 	return (result * sign);
 }
 
-/*Checks if there are duplicated numbers in created stack */
 bool	if_dubles(t_stack *stack)
 {
 	t_stack	*tmp;
@@ -67,7 +65,6 @@ bool	if_dubles(t_stack *stack)
 	return (true);
 }
 
-/*Finds last node in a stack*/
 t_stack		*last_node(t_stack *stack)
 {
 	if (!stack)
@@ -81,7 +78,6 @@ t_stack		*last_node(t_stack *stack)
 	return (stack);
 }
 
-/*Appends new node at the end of the stack*/
 void	add_node_to_end(t_stack **stack, int num)
 {
 	t_stack	*new_node;
@@ -104,7 +100,6 @@ void	add_node_to_end(t_stack **stack, int num)
 	}
 }
 
-/*Create stack, checks for valid input (no error handings)*/
 void	create_stack_a(t_stack **stack, char **argv)
 {
 	long	num;
@@ -120,7 +115,6 @@ void	create_stack_a(t_stack **stack, char **argv)
 	if (!if_dubles(*stack))
 	{
 		ft_printf("Usage: expected uniq numbers\n");
-		/*handle error*/
 		exit(-1);	 
 	}
 }

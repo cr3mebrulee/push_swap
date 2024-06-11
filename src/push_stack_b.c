@@ -51,12 +51,11 @@ void	push_stack_b(t_stack **stack_a, t_stack **stack_b)
 	list_size(*stack_a, &size);
 	while (size > 3)
 	{
-		pop(stack_a, &value);
-		push(stack_b, value);
-		size--;
+		if (pop(stack_a, &value) != 0)
+		{
+			push(stack_b, value);
+			write(1, "pb\n", sizeof("pb\n"));
+			size--;
+		}
 	}
-	printf("Stack b:\n");
-	print_stack(*stack_b);
-	printf("Stack a after pushing stack b:\n");
-	print_stack(*stack_a);
 }

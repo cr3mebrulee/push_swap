@@ -12,7 +12,6 @@
 
 #include "../include/push_swap.h"
 
-/*Function choose sort algorithm depending on the list size*/
 void	choose_sort(t_stack *stack_a, t_stack *stack_b)
 {
 	int out_size;
@@ -34,14 +33,15 @@ void	choose_sort(t_stack *stack_a, t_stack *stack_b)
 	else
 	{
 		push_stack_b(&stack_a, &stack_b);
-		printf("Stack a after sorting: \n");
-		sort_3(&stack_a);
-		printf("\n");
-		push_back_a(&stack_a, &stack_b);
+		if (!if_sorted(stack_a))
+		{
+			sort_3(&stack_a);
+		}
+		push_stack_a(&stack_a, &stack_b);
 		if (!if_sorted(stack_a))
 		{
 			final_rotation(&stack_a);
 		}
-		print_stack(stack_a);
+		
 	}
 }

@@ -27,7 +27,7 @@ void	sa(t_stack **stack)
 	first_node->next = second_node->next;
 	second_node->next = first_node;
 	*stack = second_node;
-	write(1, "sa\n", 3);
+	write(1, "sa\n", sizeof("sa\n"));
 }
 
 void	rra(t_stack **stack)
@@ -49,7 +49,7 @@ void	rra(t_stack **stack)
 	second_last->next = NULL;
 	last->next = *stack;
 	*stack = last;
-	write(1, "rra\n", 4);
+	write(1, "rra\n", sizeof("rra\n"));
 }
 
 void	ra(t_stack **stack)
@@ -70,5 +70,5 @@ void	ra(t_stack **stack)
 	*stack = first->next;
 	first->next = NULL;
 	current->next = first;
-	write(1, "ra\n", 3);
+	write(1, "ra\n", sizeof("ra\n"));
 }

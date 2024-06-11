@@ -45,7 +45,7 @@ void    push_cheapest_node(t_stack **stack_b, t_stack **stack_a, t_stack *node_b
 void	calculate_cost(t_stack *stack_a, t_stack *stack_b);
 void	find_target_index(t_stack *stack, int number, t_stack **target);
 int		find_index(t_stack *stack, int  number);
-void	push_back_a(t_stack **stack_a, t_stack **stack_b);
+void    push_stack_a(t_stack **stack_a, t_stack **stack_b);
 void	push_stack_b(t_stack **stack_a, t_stack **stack_b);
 void	rb(t_stack **stack);
 void	rrb(t_stack **stack);

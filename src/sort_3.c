@@ -22,8 +22,7 @@ void	sort_3(t_stack **stack_a)
 	}
 	else if ((first_num < second_num) && (second_num > third_num))
 	{
-		rra(stack_a);
 		sa(stack_a);
+		ra(stack_a);
 	}
-	print_stack(*stack_a);
 }

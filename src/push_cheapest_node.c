@@ -1,10 +1,5 @@
 #include "../include/push_swap.h"
 
-/*push b node*/
-/*pop b node*/
-/*rotate a stack till cheapest node at the top*/
-/*rotate stack b till cheapest node at the top*/
-
 void    lift_b_node(t_stack **stack_b, t_stack *node_b)
 {
     int cost;
@@ -64,13 +59,11 @@ void    push_cheapest_node(t_stack **stack_b, t_stack **stack_a, t_stack *node_b
 {
     int	value;
 
-     // Check if the stack pointers are valid
     if (stack_b == NULL || stack_a == NULL)
     {
         fprintf(stderr, "Error: Stack pointers cannot be NULL.\n");
         return;
     }
-    // Check if the stacks themselves are not empty
     if (*stack_b == NULL || *stack_a == NULL)
     {
         fprintf(stderr, "Error: Stacks cannot be empty.\n");
@@ -86,6 +79,6 @@ void    push_cheapest_node(t_stack **stack_b, t_stack **stack_a, t_stack *node_b
     if (pop(stack_b, &value) != 0)
     {
         push(stack_a, value);
+        write(1, "pa\n", sizeof("pa\n"));
     }
-    write(1, "pa\n", 3);
 }

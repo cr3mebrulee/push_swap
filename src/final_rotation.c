@@ -39,7 +39,6 @@ void    final_rotation(t_stack **stack)
             ra(stack);
             i--;
         }
-        write(1, "not_sorted: ra\n", 15);
     }
     else if (minimum->index > middle)
     {
@@ -49,11 +48,6 @@ void    final_rotation(t_stack **stack)
             rra(stack);
             i--;
         }
-    }
-    if (!if_sorted(*stack))
-    {
-        write(1, "not sorted anyway!\n", sizeof("not sorted anyway!\n"));
-        print_stack(*stack);
     }
     return ;
 }
