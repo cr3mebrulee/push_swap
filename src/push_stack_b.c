@@ -42,7 +42,7 @@ bool	pop(t_stack **stack, int *value)
 	return (true);
 }
 
-void	push_stack_b(t_stack **stack_a, t_stack **stack_b)
+int	push_stack_b(t_stack **stack_a, t_stack **stack_b)
 {
 	int	value;
 	int	size;
@@ -57,5 +57,11 @@ void	push_stack_b(t_stack **stack_a, t_stack **stack_b)
 			write(1, "pb\n", sizeof("pb\n"));
 			size--;
 		}
+		else 
+		{
+			ft_printf("Error\n");
+			exit(-1);
+		}
 	}
+	return (0);
 }

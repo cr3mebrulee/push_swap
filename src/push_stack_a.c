@@ -42,7 +42,7 @@ int find_cheapest_node(t_stack *stack, t_stack **cheapest_node)
     return (0);
 }
 
-void    push_stack_a(t_stack **stack_a, t_stack **stack_b)
+bool    push_stack_a(t_stack **stack_a, t_stack **stack_b)
 {
     t_stack *cheapest_node;
     t_stack *target_node;
@@ -53,12 +53,12 @@ void    push_stack_a(t_stack **stack_a, t_stack **stack_b)
     {
         if (!stack_b || !*stack_b)
         {
-            return ;
+            return (false);
         }     
         calculate_cost(*stack_a, *stack_b);
         find_cheapest_node(*stack_b, &cheapest_node);
         find_target_node(*stack_a, cheapest_node->target_index, &target_node);
         push_cheapest_node(stack_b, stack_a, cheapest_node, target_node);       
     }
-    return ;
+    return (true);
 }

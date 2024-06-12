@@ -1,19 +1,25 @@
 #include "../include/push_swap.h"
 
-void calculate_rotations(t_stack *stack, t_stack *node)
+bool calculate_rotations(t_stack *stack, t_stack *node)
 {
     int size;
     int index;
-    t_stack *ptr;
-    
-    size = 0;
-    ptr = stack;
-    while (ptr != NULL) 
+
+    if (stack == NULL || node == NULL) 
     {
-        size++;
-        ptr = ptr->next;
+        return (false);
+    }
+    size = 0;
+    list_size(stack, &size);
+    if (size == 0)
+    {
+        return (false);
     }
     index = node->index;
+    if (index < 0 || index >= size)
+    {
+        return (false);
+    }
     if (index <= size / 2)
     {
         node->cost = index;
@@ -24,9 +30,10 @@ void calculate_rotations(t_stack *stack, t_stack *node)
         node->cost = size - index;
         node->direction = 1;
     }
+    return (true);
 }
 
-void    calculate_cost(t_stack *stack_a, t_stack *stack_b)
+bool    calculate_cost(t_stack *stack_a, t_stack *stack_b)
 {
     t_stack *node_b;
     t_stack *node_a;
@@ -34,7 +41,7 @@ void    calculate_cost(t_stack *stack_a, t_stack *stack_b)
     if (stack_b == NULL)
     {
         fprintf(stderr, "Error: stack_b is NULL.\n");
-        return ;
+        return (false);
     }
     node_b = stack_b;
     node_a = stack_a;
@@ -49,5 +56,5 @@ void    calculate_cost(t_stack *stack_a, t_stack *stack_b)
         node_b = node_b->next;
         node_a = stack_a;
     }
-    return ;
+    return (true);
 }

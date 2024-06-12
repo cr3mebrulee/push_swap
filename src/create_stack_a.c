@@ -78,14 +78,14 @@ t_stack		*last_node(t_stack *stack)
 	return (stack);
 }
 
-void	add_node_to_end(t_stack **stack, int num)
+int	add_node_to_end(t_stack **stack, int num)
 {
 	t_stack	*new_node;
 
 	new_node = malloc(sizeof(t_stack));
 	if (!new_node)
 	{
-		return ;
+		return (-1);
 	}
 	new_node->next = NULL;
 	new_node->data = num;
@@ -98,9 +98,10 @@ void	add_node_to_end(t_stack **stack, int num)
 	{
 		last_node(*stack)->next = new_node;
 	}
+	return (0);
 }
 
-void	create_stack_a(t_stack **stack, char **argv)
+int	create_stack_a(t_stack **stack, char **argv)
 {
 	long	num;
 	int		i;
@@ -109,12 +110,19 @@ void	create_stack_a(t_stack **stack, char **argv)
 	while (argv[i])
 	{
 		num = ft_atol(argv[i]);
-		add_node_to_end(stack, num);
-		i++;
+		if (add_node_to_end(stack, num) == 0)
+		{
+			i++;
+		}
+		else
+		{
+			free_stack(stack);
+			exit (-1);
+		}
 	}
 	if (!if_dubles(*stack))
 	{
-		ft_printf("Usage: expected uniq numbers\n");
-		exit(-1);	 
+		return (-1);
 	}
+	return (0);
 }

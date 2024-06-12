@@ -1,11 +1,11 @@
 #include "../include/push_swap.h"
 
-void    find_max(t_stack *stack, int *num)
+bool    find_max(t_stack *stack, int *num)
 {
     if (stack == NULL)
     {
         fprintf(stderr, "Error: stack is NULL.\n");
-        return;
+        return (false);
     }
 
     *num = stack->data;
@@ -16,12 +16,16 @@ void    find_max(t_stack *stack, int *num)
             *num = stack->data;
         }     
         stack = stack->next;
-    } 
+    }
+    return (true);
 }
 
-void find_min(t_stack *stack, int *num)
+bool find_min(t_stack *stack, int *num)
 {
-  if (!stack) return;
+    if (!stack) 
+    {
+      return (false);
+    }
     *num = stack->data;
     while (stack) 
     {
@@ -30,7 +34,8 @@ void find_min(t_stack *stack, int *num)
             *num = stack->data;
         }     
         stack = stack->next;
-    } 
+    }
+    return (true);
 }
 
 t_stack *find_last_node(t_stack *stack) 
@@ -48,7 +53,7 @@ t_stack *find_last_node(t_stack *stack)
     return (current);
 }
 
-void find_target_index(t_stack *stack, int number, t_stack **target)
+bool find_target_index(t_stack *stack, int number, t_stack **target)
 {
     t_stack *node;
     t_stack *last_node;
@@ -69,7 +74,7 @@ void find_target_index(t_stack *stack, int number, t_stack **target)
             {
                 node->index = i;
                 *target = node;
-                return ;
+                return (0);
             }
             node = node->next;
             i++;
@@ -79,7 +84,7 @@ void find_target_index(t_stack *stack, int number, t_stack **target)
     {
         node->index = i;
         *target = node;
-        return;
+        return (true);
     }
     else
     {
@@ -89,11 +94,11 @@ void find_target_index(t_stack *stack, int number, t_stack **target)
             {
                 find_index(stack, node->next->data);
                 *target = node->next;
-                return ;
+                return (true);
             }
             node = node->next;
             i++;
         }
     }
-    return ; 
+    return (true); 
 }

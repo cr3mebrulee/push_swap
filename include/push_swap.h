@@ -36,17 +36,16 @@ typedef struct node {
 
 
 void	print_stack(t_stack *stack);
-void	find_min(t_stack *stack, int *num);
+bool	find_min(t_stack *stack, int *num);
 void    final_rotation(t_stack **stack);
-void    push_back_a(t_stack **stack_a, t_stack **stack_b);
 bool	push(t_stack **stack, int value);
 bool	pop(t_stack **stack, int *value);
 void    push_cheapest_node(t_stack **stack_b, t_stack **stack_a, t_stack *node_b, t_stack *node_a);
-void	calculate_cost(t_stack *stack_a, t_stack *stack_b);
-void	find_target_index(t_stack *stack, int number, t_stack **target);
+bool	calculate_cost(t_stack *stack_a, t_stack *stack_b);
+bool	find_target_index(t_stack *stack, int number, t_stack **target);
 int		find_index(t_stack *stack, int  number);
-void    push_stack_a(t_stack **stack_a, t_stack **stack_b);
-void	push_stack_b(t_stack **stack_a, t_stack **stack_b);
+bool    push_stack_a(t_stack **stack_a, t_stack **stack_b);
+int		push_stack_b(t_stack **stack_a, t_stack **stack_b);
 void	rb(t_stack **stack);
 void	rrb(t_stack **stack);
 void	ra(t_stack **stack);
@@ -56,7 +55,12 @@ void	sort_3(t_stack **stack_a);
 int		list_size(t_stack *stack, int *out_size);
 void	choose_sort(t_stack *stack_a, t_stack *stack_b);
 bool	if_sorted(t_stack *stack);
-void	create_stack_a(t_stack **stack, char **argv);
-
+int		create_stack_a(t_stack **stack, char **argv);
+int		parse_second_argument(char *str, t_stack **stack);
+int		error_create_stack(char **split_argv, t_stack **stack);
+int		error_split(char **array);
+void	free_2d_array(char **array);
+void	free_stack(t_stack **stack);
+int		check_number_arguments(int argc, char **array);
 
 #endif

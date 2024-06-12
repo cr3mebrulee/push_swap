@@ -27,7 +27,8 @@ SRCS 	= src/main.c\
 					src/find_index.c\
 					src/find_target_index.c\
 					src/push_cheapest_node.c\
-					src/final_rotation.c
+					src/final_rotation.c\
+					src/free_memory_functions.c
 					
 OBJS 	= ${SRCS:.c=.o}
 

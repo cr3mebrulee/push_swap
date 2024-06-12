@@ -23,29 +23,55 @@ void	print_stack(t_stack *stack)
 	ft_printf("\n");
 }
 
+int	check_number_arguments(int argc, char **array)
+{
+	if (argc == 1 || (argc == 2 && !array[1][0]))
+	{
+		exit (-1);
+	}
+	return (0);
+}
+
+int	parse_second_argument(char *str, t_stack **stack)
+{
+	char	**split_argv;
+
+	split_argv = ft_split(str, ' ');
+	if (split_argv == NULL)
+	{
+		error_split(split_argv);
+	}
+	if (create_stack_a(stack, split_argv) == -1)
+	{
+		error_create_stack(split_argv, stack);
+	}
+	free_2d_array(split_argv);
+	return (0);
+}
+
 int	main(int argc, char **argv)
 {
 	t_stack	*stack_a;
 	t_stack	*stack_b;
-	char	**split_argv;
 
 	stack_a = NULL;
 	stack_b = NULL;
-	if (argc == 1 || (argc == 2 && !argv[1][0]))
-		return (1);
-	else if (argc == 2)
+	check_number_arguments(argc, argv);
+	if (argc == 2)
 	{
-		split_argv = ft_split(argv[1], ' ');
-		create_stack_a(&stack_a, split_argv);
+		parse_second_argument(argv[1], &stack_a);
 	}
 	else
 	{
-		create_stack_a(&stack_a, argv + 1);
+		if (create_stack_a(&stack_a, argv + 1) == -1)
+		{
+			error_create_stack(argv + 1, &stack_a);
+		}
 	}
 	if (!if_sorted(stack_a))
 	{
 		choose_sort(stack_a, stack_b);
 	}
-	print_stack(stack_a);
+	free_stack(&stack_a);
 	return (0);
 }
