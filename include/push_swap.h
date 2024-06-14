@@ -23,6 +23,12 @@
 #define NO_ERROR 0
 #define NULL_POINTER_ERROR -1
 
+typedef enum 
+{
+  eFORWARD, 
+  eBACKWARD, 
+} t_direction;
+
 typedef struct node {
 	int	data;
 	struct node	*next;
@@ -53,7 +59,7 @@ void	rra(t_stack **stack);
 void	sa(t_stack **stack);
 void	sort_3(t_stack **stack_a);
 int		list_size(t_stack *stack, int *out_size);
-void	choose_sort(t_stack *stack_a, t_stack *stack_b);
+void	choose_sort(t_stack **stack_a, t_stack **stack_b);
 bool	if_sorted(t_stack *stack);
 int		create_stack_a(t_stack **stack, char **argv);
 int		parse_second_argument(char *str, t_stack **stack);

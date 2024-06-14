@@ -49,5 +49,7 @@ void    final_rotation(t_stack **stack)
             i--;
         }
     }
+    printf("Final rotation\n");
+    print_stack(*stack);
     return ;
 }

@@ -23,12 +23,12 @@ bool calculate_rotations(t_stack *stack, t_stack *node)
     if (index <= size / 2)
     {
         node->cost = index;
-        node->direction = 0;
+        node->direction =  eFORWARD;
     }
     else
     {
         node->cost = size - index;
-        node->direction = 1;
+        node->direction = eBACKWARD;
     }
     return (true);
 }

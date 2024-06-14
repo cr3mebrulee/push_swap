@@ -12,35 +12,37 @@
 
 #include "../include/push_swap.h"
 
-void	choose_sort(t_stack *stack_a, t_stack *stack_b)
+void	choose_sort(t_stack **stack_a, t_stack **stack_b)
 {
 	int out_size;
 
 	out_size = 0;
-	if (list_size(stack_a, &out_size) == -1)
+	if (list_size(*stack_a, &out_size) == -1)
 	{
-		ft_printf("Error");
+		ft_printf("Error\n");
 		return ;
 	}
 	if (out_size == 3)
 	{
-		sort_3(&stack_a);
+		sort_3(stack_a);
 	}
 	else if (out_size == 2)
 	{
-		sa(&stack_a);
+		sa(stack_a);
 	}
 	else
 	{
-		push_stack_b(&stack_a, &stack_b);
-		if (!if_sorted(stack_a))
+		push_stack_b(stack_a, stack_b);
+		if (!if_sorted(*stack_a))
 		{
-			sort_3(&stack_a);
+			sort_3(stack_a);
 		}
-		push_stack_a(&stack_a, &stack_b);
-		if (!if_sorted(stack_a))
+		push_stack_a(stack_a, stack_b);
+		if (!if_sorted(*stack_a))
 		{
-			final_rotation(&stack_a);
+			final_rotation(stack_a);
 		}
 	}
+	printf("Choose sort\n");
+	print_stack(*stack_a);
 }

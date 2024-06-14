@@ -9,7 +9,7 @@ void    lift_b_node(t_stack **stack_b, t_stack *node_b)
     {
         return ;
     }
-    else if (node_b->direction == 0)
+    else if (node_b->direction == eFORWARD)
     {
         while (cost != 0)
         {
@@ -17,7 +17,7 @@ void    lift_b_node(t_stack **stack_b, t_stack *node_b)
             cost--;
         }
     }
-    else if (node_b->direction == 1)
+    else if (node_b->direction == eBACKWARD)
     {
         while (cost != 0)
         {
@@ -37,7 +37,7 @@ void    lift_a_node(t_stack **stack_a, t_stack *node_a)
     {
         return ;
     }
-    else if (node_a->direction == 0)
+    else if (node_a->direction == eFORWARD)
     {
         while (cost != 0)
         {
@@ -45,7 +45,7 @@ void    lift_a_node(t_stack **stack_a, t_stack *node_a)
             cost--;
         }
     }
-    else if (node_a->direction == 1)
+    else if (node_a->direction == eBACKWARD)
     {
         while (cost != 0)
         {

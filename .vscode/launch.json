@@ -6,12 +6,12 @@
       "type": "cppdbg",
       "request": "launch",
       "args": [
-          "1 2 4 6 5 2"
+          "2 1 3 6 5 8"
       ],
       "stopAtEntry": false,
       "externalConsole": false,
-      "cwd": "/home/tanya/Berlin42/my_push_swap_last_modif/repo_without_vscode/push_swap/src",
-      "program": "/home/tanya/Berlin42/my_push_swap_last_modif/repo_without_vscode/push_swap/src/build/Debug/outDebug",
+      "cwd": "${fileDirname}",
+      "program": "${workspaceFolder}/push_swap",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [

@@ -117,7 +117,7 @@ int	create_stack_a(t_stack **stack, char **argv)
 		else
 		{
 			free_stack(stack);
-			exit (-1);
+			return (-1);
 		}
 	}
 	if (!if_dubles(*stack))
