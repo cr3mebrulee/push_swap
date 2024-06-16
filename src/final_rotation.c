@@ -20,6 +20,26 @@ t_stack    *rotation_settings(t_stack *stack)
     return (stack);
 }
 
+void    reverse_rotate(int i, t_stack **stack)
+{
+    while (i > 0)
+    {
+        rra(stack);
+        i--;
+    }
+    return ;
+}
+
+void    rotate(int i, t_stack **stack)
+{
+    while (i > 0)
+    {
+        ra(stack);
+        i--;
+    }
+    return ;
+}
+
 void    final_rotation(t_stack **stack)
 {
     int i;
@@ -34,22 +54,12 @@ void    final_rotation(t_stack **stack)
     if (minimum->index <= middle)
     {
         i = minimum->index;
-        while (i > 0)
-        {
-            ra(stack);
-            i--;
-        }
+        rotate(i, stack);
     }
     else if (minimum->index > middle)
     {
         i = size - minimum->index;
-        while (i > 0)
-        {
-            rra(stack);
-            i--;
-        }
+        reverse_rotate(i, stack);
     }
-    printf("Final rotation\n");
-    print_stack(*stack);
     return ;
 }

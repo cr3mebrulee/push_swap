@@ -65,14 +65,16 @@ int	main(int argc, char **argv)
 	{
 		if (create_stack_a(&stack_a, argv + 1) == -1)
 		{
-			error_create_stack(argv + 1, &stack_a);
+			ft_printf("Error\n");
+			free_stack(&stack_a);
+			exit(-1);
 		}
 	}
 	if (!if_sorted(stack_a))
 	{
 		choose_sort(&stack_a, &stack_b);
-		printf("Main\n");
-		print_stack(stack_a);
+		// printf("Main\n");
+		// print_stack(stack_a);
 	}
 	free_stack(&stack_a);
 	return (0);

@@ -36,8 +36,7 @@ typedef struct node {
 	int index;
 	int	cost;
 	int sum_cost;
-	int	direction;
-	
+	t_direction  direction;
 }	t_stack;
 
 
@@ -59,7 +58,7 @@ void	rra(t_stack **stack);
 void	sa(t_stack **stack);
 void	sort_3(t_stack **stack_a);
 int		list_size(t_stack *stack, int *out_size);
-void	choose_sort(t_stack **stack_a, t_stack **stack_b);
+int		choose_sort(t_stack **stack_a, t_stack **stack_b);
 bool	if_sorted(t_stack *stack);
 int		create_stack_a(t_stack **stack, char **argv);
 int		parse_second_argument(char *str, t_stack **stack);

@@ -58,7 +58,7 @@ bool    push_stack_a(t_stack **stack_a, t_stack **stack_b)
         calculate_cost(*stack_a, *stack_b);
         find_cheapest_node(*stack_b, &cheapest_node);
         find_target_node(*stack_a, cheapest_node->target_index, &target_node);
-        printf("Cheapest node data is %i\n", cheapest_node->data);
+        // printf("Cheapest node data is %i\n", cheapest_node->data);
         push_cheapest_node(stack_b, stack_a, cheapest_node, target_node);
     }
     return (true);

@@ -12,7 +12,7 @@
 
 #include "../include/push_swap.h"
 
-void	choose_sort(t_stack **stack_a, t_stack **stack_b)
+int	choose_sort(t_stack **stack_a, t_stack **stack_b)
 {
 	int out_size;
 
@@ -20,7 +20,7 @@ void	choose_sort(t_stack **stack_a, t_stack **stack_b)
 	if (list_size(*stack_a, &out_size) == -1)
 	{
 		ft_printf("Error\n");
-		return ;
+		return (-1);
 	}
 	if (out_size == 3)
 	{
@@ -43,6 +43,7 @@ void	choose_sort(t_stack **stack_a, t_stack **stack_b)
 			final_rotation(stack_a);
 		}
 	}
-	printf("Choose sort\n");
-	print_stack(*stack_a);
+	// printf("Choose sort\n");
+	// print_stack(*stack_a);
+	return (0);
 }

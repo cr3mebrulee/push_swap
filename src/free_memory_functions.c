@@ -12,6 +12,7 @@ void free_stack(t_stack **stack)
         current = next_node;
     }
     *stack = NULL;
+    return ;
 }
 
 void	free_2d_array(char **array)

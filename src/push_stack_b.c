@@ -54,13 +54,14 @@ int	push_stack_b(t_stack **stack_a, t_stack **stack_b)
 		if (pop(stack_a, &value) != 0)
 		{
 			push(stack_b, value);
-			write(1, "pb\n", sizeof("pb\n"));
+			write(1, "pb\n", 3);
 			size--;
 		}
 		else 
 		{
 			ft_printf("Error\n");
-			exit(-1);
+			free_stack(stack_b);
+			free_stack(stack_a);
 		}
 	}
 	return (0);

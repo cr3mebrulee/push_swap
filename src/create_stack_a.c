@@ -31,8 +31,7 @@ static int	ft_atol(const char *str)
 	{
 		if (!ft_isdigit(*str))
 		{
-			printf("Usage: expected integer");
-			exit (1);
+			return (-1);
 		}
 			
 		result = (*str - '0') + (result * 10);
@@ -41,8 +40,7 @@ static int	ft_atol(const char *str)
 	if ((result > LONG_MAX || result < LONG_MIN)
 		|| (result > INT_MAX || result < INT_MIN))
 	{
-		ft_printf("Usage: expected integer\n");
-		exit(-1);
+		return (-1);
 	}
 	return (result * sign);
 }
@@ -109,13 +107,17 @@ int	create_stack_a(t_stack **stack, char **argv)
 	i = 0;
 	while (argv[i])
 	{
-		num = ft_atol(argv[i]);
+		if ((num = ft_atol(argv[i])) == -1)
+		{
+			return (-1);
+		}
 		if (add_node_to_end(stack, num) == 0)
 		{
 			i++;
 		}
 		else
 		{
+			ft_printf("Error\n");
 			free_stack(stack);
 			return (-1);
 		}

@@ -49,7 +49,7 @@ void	rra(t_stack **stack)
 	second_last->next = NULL;
 	last->next = *stack;
 	*stack = last;
-	write(1, "rra\n", sizeof("rra\n"));
+	write(1, "rra\n", 4);
 }
 
 void	ra(t_stack **stack)
@@ -70,5 +70,5 @@ void	ra(t_stack **stack)
 	*stack = first->next;
 	first->next = NULL;
 	current->next = first;
-	write(1, "ra\n", sizeof("ra\n"));
+	write(1, "ra\n", 3);
 }

@@ -18,7 +18,7 @@ void	rb(t_stack **stack)
 	*stack = first->next;
 	first->next = NULL;
 	current->next = first;
-	write(1, "rb\n", sizeof("rb\n"));
+	write(1, "rb\n", 3);
 }
 
 void	rrb(t_stack **stack)
@@ -40,5 +40,5 @@ void	rrb(t_stack **stack)
 	second_last->next = NULL;
 	last->next = *stack;
 	*stack = last;
-	write(1, "rrb\n", sizeof("rrb\n"));
+	write(1, "rrb\n", 4);
 }
