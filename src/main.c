@@ -73,9 +73,9 @@ int	main(int argc, char **argv)
 	if (!if_sorted(stack_a))
 	{
 		choose_sort(&stack_a, &stack_b);
-		// printf("Main\n");
-		// print_stack(stack_a);
 	}
+	// printf("Main\n");
+	// print_stack(stack_a);
 	free_stack(&stack_a);
 	return (0);
 }

@@ -1,25 +1,13 @@
 #include "../include/push_swap.h"
 
-bool calculate_rotations(t_stack *stack, t_stack *node)
+bool    calculate_rotations(t_stack *stack, t_stack *node)
 {
     int size;
     int index;
 
-    if (stack == NULL || node == NULL) 
-    {
-        return (false);
-    }
     size = 0;
     list_size(stack, &size);
-    if (size == 0)
-    {
-        return (false);
-    }
-    index = node->index;
-    if (index < 0 || index >= size)
-    {
-        return (false);
-    }
+    index = node->index;    
     if (index <= size / 2)
     {
         node->cost = index;
@@ -40,8 +28,7 @@ bool    calculate_cost(t_stack *stack_a, t_stack *stack_b)
 
     if (stack_b == NULL)
     {
-        fprintf(stderr, "Error: stack_b is NULL.\n");
-        return (false);
+        empty_stack_error(&stack_a, &stack_b);
     }
     node_b = stack_b;
     node_a = stack_a;

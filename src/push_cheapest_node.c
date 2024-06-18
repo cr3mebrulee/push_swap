@@ -27,7 +27,6 @@ void    lift_b_node(t_stack **stack_b, t_stack *node_b)
     }
 }
 
-
 void    lift_a_node(t_stack **stack_a, t_stack *node_a)
 {
     int cost;

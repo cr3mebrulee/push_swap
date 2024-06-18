@@ -25,6 +25,7 @@ SRCS 	= src/main.c\
 					src/push_stack_a.c\
 					src/calculate_cost.c\
 					src/find_index.c\
+					src/find_min_max.c\
 					src/find_target_index.c\
 					src/push_cheapest_node.c\
 					src/final_rotation.c\

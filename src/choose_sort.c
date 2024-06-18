@@ -12,16 +12,26 @@
 
 #include "../include/push_swap.h"
 
+int sort_large_stack(t_stack **stack_a, t_stack **stack_b)
+{
+	if (!if_sorted(*stack_a))
+	{
+		sort_3(stack_a);
+	}
+	push_stack_a(stack_a, stack_b);
+	if (!if_sorted(*stack_a))
+	{
+    	final_rotation(stack_a);
+	}
+    return (0);
+}
+
 int	choose_sort(t_stack **stack_a, t_stack **stack_b)
 {
-	int out_size;
+	int	out_size;
 
 	out_size = 0;
-	if (list_size(*stack_a, &out_size) == -1)
-	{
-		ft_printf("Error\n");
-		return (-1);
-	}
+	list_size(*stack_a, &out_size);
 	if (out_size == 3)
 	{
 		sort_3(stack_a);
@@ -32,18 +42,7 @@ int	choose_sort(t_stack **stack_a, t_stack **stack_b)
 	}
 	else
 	{
-		push_stack_b(stack_a, stack_b);
-		if (!if_sorted(*stack_a))
-		{
-			sort_3(stack_a);
-		}
-		push_stack_a(stack_a, stack_b);
-		if (!if_sorted(*stack_a))
-		{
-			final_rotation(stack_a);
-		}
+        sort_large_stack(stack_a, stack_b);
 	}
-	// printf("Choose sort\n");
-	// print_stack(*stack_a);
 	return (0);
 }

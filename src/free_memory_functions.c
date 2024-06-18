@@ -15,6 +15,14 @@ void free_stack(t_stack **stack)
     return ;
 }
 
+int empty_stack_error(t_stack **stack_a, t_stack **stack_b)
+{
+    ft_printf("Error\n");
+    free_stack(stack_a);
+    free_stack(stack_b);
+    exit (-1);
+}
+
 void	free_2d_array(char **array)
 {
 	int	i;

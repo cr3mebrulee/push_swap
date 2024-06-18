@@ -12,6 +12,17 @@
 
 #include "../include/push_swap.h"
 
+bool	check_long_bounderies(long int result)
+{
+	if ((result > LONG_MAX || result < LONG_MIN)
+		|| (result > INT_MAX || result < INT_MIN))
+	{
+		return (false);
+	}
+	return (true);
+}
+	
+
 static int	ft_atol(const char *str)
 {
 	long int	result;
@@ -30,15 +41,11 @@ static int	ft_atol(const char *str)
 	while (*str)
 	{
 		if (!ft_isdigit(*str))
-		{
 			return (-1);
-		}
-			
 		result = (*str - '0') + (result * 10);
 		str++;
 	}
-	if ((result > LONG_MAX || result < LONG_MIN)
-		|| (result > INT_MAX || result < INT_MIN))
+	if (!check_long_bounderies(result))
 	{
 		return (-1);
 	}
@@ -91,7 +98,6 @@ int	add_node_to_end(t_stack **stack, int num)
 	{
 		*stack = new_node;
 	}
-		
 	else
 	{
 		last_node(*stack)->next = new_node;

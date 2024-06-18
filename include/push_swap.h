@@ -41,12 +41,15 @@ typedef struct node {
 
 
 void	print_stack(t_stack *stack);
+int		empty_stack_error(t_stack **stack_a, t_stack **stack_b);
 bool	find_min(t_stack *stack, int *num);
 void    final_rotation(t_stack **stack);
 bool	push(t_stack **stack, int value);
 bool	pop(t_stack **stack, int *value);
 void    push_cheapest_node(t_stack **stack_b, t_stack **stack_a, t_stack *node_b, t_stack *node_a);
 bool	calculate_cost(t_stack *stack_a, t_stack *stack_b);
+bool    find_max(t_stack *stack, int *num);
+bool	find_min(t_stack *stack, int *num);
 bool	find_target_index(t_stack *stack, int number, t_stack **target);
 int		find_index(t_stack *stack, int  number);
 bool    push_stack_a(t_stack **stack_a, t_stack **stack_b);
