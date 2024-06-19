@@ -14,6 +14,7 @@
 
 int sort_large_stack(t_stack **stack_a, t_stack **stack_b)
 {
+	push_stack_b(stack_a, stack_b);
 	if (!if_sorted(*stack_a))
 	{
 		sort_3(stack_a);

@@ -6,7 +6,7 @@
       "type": "cppdbg",
       "request": "launch",
       "args": [
-          "1 2 4 6 5"
+          "4 67 87 23"
       ],
       "stopAtEntry": false,
       "externalConsole": false,
