@@ -65,7 +65,6 @@ int	main(int argc, char **argv)
 	{
 		if (create_stack_a(&stack_a, argv + 1) == -1)
 		{
-			ft_printf("Error\n");
 			free_stack(&stack_a);
 			exit(-1);
 		}
@@ -74,8 +73,8 @@ int	main(int argc, char **argv)
 	{
 		choose_sort(&stack_a, &stack_b);
 	}
-	// printf("Main\n");
-	// print_stack(stack_a);
 	free_stack(&stack_a);
+	// ft_printf("Main\n");
+	// print_stack(stack_a);
 	return (0);
 }

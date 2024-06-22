@@ -18,7 +18,7 @@ bool	if_sorted(t_stack *stack)
 	
 	if (stack == NULL)
 	{
-		return (NULL_POINTER_ERROR);
+		return (false);
 	}
 	ptr = stack;
 	while (ptr->next != NULL)

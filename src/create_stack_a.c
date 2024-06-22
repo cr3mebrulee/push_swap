@@ -14,6 +14,7 @@
 
 bool	check_long_bounderies(long int result)
 {
+	
 	if ((result > LONG_MAX || result < LONG_MIN)
 		|| (result > INT_MAX || result < INT_MIN))
 	{
@@ -22,11 +23,10 @@ bool	check_long_bounderies(long int result)
 	return (true);
 }
 	
-
-static int	ft_atol(const char *str)
+bool	ft_atol(const char *str, long *num)
 {
-	long int	result;
-	int			sign;
+	long	result;
+	int		sign;
 
 	sign = 1;
 	result = 0;
@@ -41,15 +41,17 @@ static int	ft_atol(const char *str)
 	while (*str)
 	{
 		if (!ft_isdigit(*str))
-			return (-1);
+			return (false);
 		result = (*str - '0') + (result * 10);
 		str++;
 	}
+	result *= sign;
 	if (!check_long_bounderies(result))
 	{
-		return (-1);
+		return (false);
 	}
-	return (result * sign);
+	*num = result;
+	return (true);
 }
 
 bool	if_dubles(t_stack *stack)
@@ -62,7 +64,9 @@ bool	if_dubles(t_stack *stack)
 		while (tmp != NULL)
 		{
 			if (stack->data == tmp->data)
+			{
 				return (false);
+			}
 		tmp = tmp->next;
 		}
 		stack = stack->next;
@@ -113,20 +117,17 @@ int	create_stack_a(t_stack **stack, char **argv)
 	i = 0;
 	while (argv[i])
 	{
-		if ((num = ft_atol(argv[i])) == -1)
+		if (!(ft_atol(argv[i], &num)))
 		{
 			return (-1);
 		}
-		if (add_node_to_end(stack, num) == 0)
-		{
-			i++;
-		}
-		else
+		if (add_node_to_end(stack, num) == -1)
 		{
 			ft_printf("Error\n");
 			free_stack(stack);
 			return (-1);
 		}
+		i++;
 	}
 	if (!if_dubles(*stack))
 	{
